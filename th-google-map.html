@@ -1,5 +1,6 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../google-map/google-map.html">
+<link rel="import" href="../thelma-core/thelma_core.html">
 
 <!--
 Element providing solution to no problem in particular.
@@ -13,7 +14,7 @@ Element providing solution to no problem in particular.
 @status alpha
 @homepage http://sepans.github.io/th-google-map
 -->
-<polymer-element name="th-google-map" attributes="latitude longitude zoom showCenterMarker mapType fitToMarkers zoomable width height">
+<polymer-element name="th-google-map" extends="th-animated" attributes="latitude longitude zoom showCenterMarker mapType markers fitToMarkers zoomable width height">
 
   <template>
 
