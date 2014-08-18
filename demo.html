@@ -5,6 +5,17 @@
   <title>th-google-map Demo</title>
 
   <script src="../platform/platform.js"></script>
+  <script>
+
+  		setTimeout(function() {
+
+	  		var map =   document.querySelector('th-google-map');
+	  		console.log(map);
+  			var markers = map.markers;
+  			markers.push({"latitude": 40.72, "longitude": -74.0039, "label": "more"  });
+  		},2000);
+
+  </script>
   <link rel="import" href="th-google-map.html">
 
 </head>
