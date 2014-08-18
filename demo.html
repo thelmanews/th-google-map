@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>th-google-map Demo</title>
+
+  <script src="../platform/platform.js"></script>
+  <script>
+
+  		setTimeout(function() {
+
+	  		var map =   document.querySelector('th-google-map');
+	  		console.log(map);
+  			var markers = map.markers;
+  			markers.push({"latitude": 40.72, "longitude": -74.0039, "label": "more"  });
+  		},2000);
+
+  </script>
+  <link rel="import" href="th-google-map.html">
+
+</head>
+<body unresolved>
+
+  <p>An `th-google-map` looks like this:</p>
+
+  <th-google-map></th-google-map>
+
+</body>
+</html>

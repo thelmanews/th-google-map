@@ -1,0 +1,86 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../google-map/google-map.html">
+<link rel="import" href="../thelma-core/thelma_core.html">
+
+<!--
+Element providing solution to no problem in particular.
+
+##### Example
+
+    <th-google-map></th-google-map>
+
+@element th-google-map
+@blurb Element providing solution to no problem in particular.
+@status alpha
+@homepage http://sepans.github.io/th-google-map
+-->
+<polymer-element name="th-google-map" extends="th-animated" attributes="latitude longitude zoom showCenterMarker mapType markers fitToMarkers zoomable width height">
+
+  <template>
+
+    <link rel="stylesheet" href="th-google-map.css" />
+
+    <google-map id="map" latitude="{{latitude}}" longitude="{{longitude}}" zoom"{{zoom}}" showCenterMarker"{{showCenterMarker}}" mapType"{{mapType}}" 
+    fitToMarkers"{{fitToMarkers}}" zoomable"{{zoomable}}" style="width: {{width}}px; height: {{height}}px">
+
+      <template repeat="{{marker in markers}}">
+        <google-map-marker latitude="{{marker.latitude}}" longitude="{{marker.longitude}}"
+        title="{{marker.label}}"></google-map-marker>
+      </template>
+
+
+    </google-map>
+
+
+    
+
+  </template>
+
+  <script>
+
+    Polymer('th-google-map', {
+
+    /**
+     * A latitude to center the map on.
+     *
+     * @attribute latitude
+     * @type number
+     * @default 37.77493
+     */
+    latitude: 40.7127,
+
+    /**
+     * A longitude to center the map on.
+     *
+     * @attribute longitude
+     * @type number
+     * @default -122.41942
+     */
+    longitude: -74.0059,
+
+    width: 200,
+    height: 200,
+
+    markers: [{"latitude": 40.71, "longitude": -74.0059, "label": "NYC"  },
+              {"latitude": 40.75, "longitude": -74.0049, "label": "another"  }],
+
+   
+
+      ready: function() {
+      },
+
+      /**
+       * The `task` method does no work at this time.
+       *
+       * @method task
+       * @return {Object} Returns undefined.
+       * @param {String} dummy Serves no purpose today.
+       */
+      task: function(dummy) {
+      }
+
+    });
+
+  </script>
+
+</polymer-element>
