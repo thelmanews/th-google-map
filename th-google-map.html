@@ -1,6 +1,7 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../google-map/google-map.html">
 <link rel="import" href="../thelma-core/thelma_core.html">
+<link rel="import" href="../thelma-utils/th-theme.html">
 
 <!--
 Element providing solution to no problem in particular.
@@ -14,13 +15,13 @@ Element providing solution to no problem in particular.
 @status alpha
 @homepage http://sepans.github.io/th-google-map
 -->
-<polymer-element name="th-google-map" extends="th-animated" attributes="latitude longitude zoom showCenterMarker mapType markers fitToMarkers zoomable width height">
+<polymer-element name="th-google-map" extends="th-animated" attributes="latitude longitude zoom showCenterMarker mapType markers fitToMarkers zoomable width height useTheme">
 
   <template>
 
     <link rel="stylesheet" href="th-google-map.css" />
 
-    <google-map id="map" latitude="{{latitude}}" longitude="{{longitude}}" zoom"{{zoom}}" showCenterMarker"{{showCenterMarker}}" mapType"{{mapType}}" 
+    <google-map id="map" styles="{{styles}}" latitude="{{latitude}}" longitude="{{longitude}}" zoom="{{zoom}}" showCenterMarker="{{showCenterMarker}}" mapType="{{mapType}}" 
     fitToMarkers"{{fitToMarkers}}" zoomable"{{zoomable}}" style="width: {{width}}px; height: {{height}}px">
 
       <template repeat="{{marker in markers}}">
@@ -57,27 +58,101 @@ Element providing solution to no problem in particular.
      * @default -122.41942
      */
     longitude: -74.0059,
-
+    
+    /**
+     * Width of map
+     * @type {Number}
+     */
     width: 200,
+    
+    /**
+     * Height of map
+     * @type {Number}
+     */
     height: 200,
-
+    
+    /**
+     * Markers on the map. each marker item has latitude, longitude and label (optional)
+     * @type {Array}
+     */
     markers: [{"latitude": 40.71, "longitude": -74.0059, "label": "NYC"  },
               {"latitude": 40.75, "longitude": -74.0049, "label": "another"  }],
 
+    /**
+     * Use core style themes, otherwise google default theme.
+     * @type {Boolean}
+     */
+    useTheme: true,
+
+    /**
+     * Custom map theme. Default uses Core-Style theme colors
+     * @type {Array}
+     */
+    styles: [
+          {
+            featureType: "all",
+            stylers: [
+              { saturation: -50 }
+            ]
+          },{
+            featureType: 'landscape',
+            elementType: 'all',
+            stylers: [
+              { hue: CoreStyle.g.theme.background1 },
+              { lightness: 30 },
+              { visibility: 'simplified' },
+              { saturation: 20 }
+            ]
+                },{
+            featureType: 'road.highway',
+            elementType: 'geometry',
+            stylers: [
+              { hue: CoreStyle.g.theme.accent1 },
+              { visibility: 'simplified' },
+              { gamma: 0.9 },
+              { saturation: 0 },
+              { lightness: 40 }
+            ]
+          },{
+            featureType: 'road.arterial',
+            elementType: 'all',
+            stylers: [
+              { hue: CoreStyle.g.theme.accent1 },
+              { lightness: -20 },
+              { visibility: 'simplified' },
+              { saturation: 20 }
+            ]
+          },{
+            featureType: 'road.local',
+            elementType: 'all',
+            stylers: [
+              { hue: CoreStyle.g.theme.accent1 },
+              { saturation: 30 },
+              { gamma: 0.7 },
+              { visibility: 'simplified' }
+            ]
+          },
+          {
+            featureType: "poi.business",
+            elementType: "labels",
+            stylers: [
+              { visibility: "off" }
+            ]
+          }
+        ],
+
    
-
-      ready: function() {
-      },
-
       /**
-       * The `task` method does no work at this time.
+       * Initializes thelma component
        *
-       * @method task
-       * @return {Object} Returns undefined.
-       * @param {String} dummy Serves no purpose today.
        */
-      task: function(dummy) {
+      init: function() {
+        if(!this.useTheme) {
+          this.styles = null;
+        }
       }
+
+      
 
     });
 
