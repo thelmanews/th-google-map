@@ -108,10 +108,62 @@ Element providing solution to no problem in particular.
     useTheme: true,
 
     /**
-     * Custom map theme. Default uses Core-Style theme colors
+     * Custom map theme. Default uses Core-Style theme colors (it doens't need to be initialized here
+     * since useThemeChanged handles that but composer cannot handle it that way)
      * @type {Array}
      */
-    styles: null,
+    styles: [
+            {
+              featureType: "all",
+              stylers: [
+                { saturation: -50 }
+              ]
+            },{
+              featureType: 'landscape',
+              elementType: 'all',
+              stylers: [
+                { hue: CoreStyle.g.theme.background1 },
+                { lightness: 30 },
+                { visibility: 'simplified' },
+                { saturation: 20 }
+              ]
+                  },{
+              featureType: 'road.highway',
+              elementType: 'geometry',
+              stylers: [
+                { hue: CoreStyle.g.theme.accent1 },
+                { visibility: 'simplified' },
+                { gamma: 0.9 },
+                { saturation: 0 },
+                { lightness: 40 }
+              ]
+            },{
+              featureType: 'road.arterial',
+              elementType: 'all',
+              stylers: [
+                { hue: CoreStyle.g.theme.accent1 },
+                { lightness: -20 },
+                { visibility: 'simplified' },
+                { saturation: 20 }
+              ]
+            },{
+              featureType: 'road.local',
+              elementType: 'all',
+              stylers: [
+                { hue: CoreStyle.g.theme.accent1 },
+                { saturation: 30 },
+                { gamma: 0.7 },
+                { visibility: 'simplified' }
+              ]
+            },
+            {
+              featureType: "poi.business",
+              elementType: "labels",
+              stylers: [
+                { visibility: "off" }
+              ]
+            }
+          ],
 
       domReady: function() {
         
