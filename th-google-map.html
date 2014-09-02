@@ -113,14 +113,14 @@ Element providing solution to no problem in particular.
      */
     styles: null,
 
-   
-      /**
-       * Initializes thelma component
-       *
-       */
-      init: function() {
+      domReady: function() {
+        
         this.useThemeChanged();
+        this.$.map.addEventListener('google-map-ready', function() {
+            this.fire('th-ready', {msg: 'element ready', element: this});
+        });
       },
+   
       /**
        * Observer method for useTheme. Google map api doesn't support style changes but works in composer since it
        * reinitializes the component
