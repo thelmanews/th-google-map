@@ -20,9 +20,9 @@ Element providing solution to no problem in particular.
   <template>
 
     <link rel="stylesheet" href="th-google-map.css" />
-
+    {{zoomable}}
     <google-map id="map" styles="{{styles}}" latitude="{{latitude}}" longitude="{{longitude}}" zoom="{{zoom}}" showCenterMarker="{{showCenterMarker}}" mapType="{{mapType}}" 
-    fitToMarkers"{{fitToMarkers}}" zoomable"{{zoomable}}" style="width: {{width}}px; height: {{height}}px">
+    fitToMarkers"{{fitToMarkers}}" zoomable="{{zoomable}}" style="width: {{width}}px; height: {{height}}px">
 
       <template repeat="{{marker in markers}}">
         <google-map-marker latitude="{{marker.latitude}}" longitude="{{marker.longitude}}"
@@ -76,13 +76,17 @@ Element providing solution to no problem in particular.
      * @type {Number}
      */
     zoom : 10,
+
+    zoomable: false,
     
     /**
      * Markers on the map. each marker item has latitude, longitude and label (optional)
      * @type {Array}
      */
-    markers: [{"latitude": 40.71, "longitude": -74.0059, "label": "NYC"  },
+    markers: [{"latitude": 40.6928, "longitude": -73.9903, "label": "Brooklyn"  },
               {"latitude": 40.75, "longitude": -74.0049, "label": "another"  }],
+
+    showCenterMarker: false,              
 
     /**
      * Use core style themes, otherwise google default theme.
@@ -94,58 +98,7 @@ Element providing solution to no problem in particular.
      * Custom map theme. Default uses Core-Style theme colors
      * @type {Array}
      */
-    styles: [
-          {
-            featureType: "all",
-            stylers: [
-              { saturation: -50 }
-            ]
-          },{
-            featureType: 'landscape',
-            elementType: 'all',
-            stylers: [
-              { hue: CoreStyle.g.theme.background1 },
-              { lightness: 30 },
-              { visibility: 'simplified' },
-              { saturation: 20 }
-            ]
-                },{
-            featureType: 'road.highway',
-            elementType: 'geometry',
-            stylers: [
-              { hue: CoreStyle.g.theme.accent1 },
-              { visibility: 'simplified' },
-              { gamma: 0.9 },
-              { saturation: 0 },
-              { lightness: 40 }
-            ]
-          },{
-            featureType: 'road.arterial',
-            elementType: 'all',
-            stylers: [
-              { hue: CoreStyle.g.theme.accent1 },
-              { lightness: -20 },
-              { visibility: 'simplified' },
-              { saturation: 20 }
-            ]
-          },{
-            featureType: 'road.local',
-            elementType: 'all',
-            stylers: [
-              { hue: CoreStyle.g.theme.accent1 },
-              { saturation: 30 },
-              { gamma: 0.7 },
-              { visibility: 'simplified' }
-            ]
-          },
-          {
-            featureType: "poi.business",
-            elementType: "labels",
-            stylers: [
-              { visibility: "off" }
-            ]
-          }
-        ],
+    styles: null,
 
    
       /**
@@ -153,10 +106,70 @@ Element providing solution to no problem in particular.
        *
        */
       init: function() {
-        if(!this.useTheme) {
+        this.useThemeChanged();
+      },
+
+      useThemeChanged: function() {
+        if(this.useTheme) {
+          this.styles = [
+            {
+              featureType: "all",
+              stylers: [
+                { saturation: -50 }
+              ]
+            },{
+              featureType: 'landscape',
+              elementType: 'all',
+              stylers: [
+                { hue: CoreStyle.g.theme.background1 },
+                { lightness: 30 },
+                { visibility: 'simplified' },
+                { saturation: 20 }
+              ]
+                  },{
+              featureType: 'road.highway',
+              elementType: 'geometry',
+              stylers: [
+                { hue: CoreStyle.g.theme.accent1 },
+                { visibility: 'simplified' },
+                { gamma: 0.9 },
+                { saturation: 0 },
+                { lightness: 40 }
+              ]
+            },{
+              featureType: 'road.arterial',
+              elementType: 'all',
+              stylers: [
+                { hue: CoreStyle.g.theme.accent1 },
+                { lightness: -20 },
+                { visibility: 'simplified' },
+                { saturation: 20 }
+              ]
+            },{
+              featureType: 'road.local',
+              elementType: 'all',
+              stylers: [
+                { hue: CoreStyle.g.theme.accent1 },
+                { saturation: 30 },
+                { gamma: 0.7 },
+                { visibility: 'simplified' }
+              ]
+            },
+            {
+              featureType: "poi.business",
+              elementType: "labels",
+              stylers: [
+                { visibility: "off" }
+              ]
+            }
+          ]
+        }
+        else {
           this.styles = null;
         }
       }
+
+
 
       
 

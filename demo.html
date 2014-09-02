@@ -12,8 +12,11 @@
 	  		var map =   document.querySelector('th-google-map');
 	  		console.log(map);
   			var markers = map.markers;
-  			markers.push({"latitude": 40.72, "longitude": -74.0039, "label": "more"  });
-  		},2000);
+        map.showCenterMarker = true;
+        map.useTheme = false;
+        map.zoomable = false;
+  		//	markers.push({"latitude": 40.72, "longitude": -74.0039, "label": "more"  });
+  		},4000);
 
   </script>
   <link rel="import" href="th-google-map.html">
