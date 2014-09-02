@@ -77,6 +77,10 @@ Element providing solution to no problem in particular.
      */
     zoom : 10,
 
+    /**
+     * enables doeble click  (tap?) zoom
+     * @type {Boolean}
+     */
     zoomable: false,
     
     /**
@@ -86,6 +90,10 @@ Element providing solution to no problem in particular.
     markers: [{"latitude": 40.6928, "longitude": -73.9903, "label": "Brooklyn"  },
               {"latitude": 40.75, "longitude": -74.0049, "label": "another"  }],
 
+    /**
+     * show center marker
+     * @type {Boolean}
+     */
     showCenterMarker: false,              
 
     /**
@@ -108,7 +116,11 @@ Element providing solution to no problem in particular.
       init: function() {
         this.useThemeChanged();
       },
-
+      /**
+       * Observer method for useTheme. Google map api doesn't support style changes but works in composer since it
+       * reinitializes the component
+       * @return {[type]} null
+       */
       useThemeChanged: function() {
         if(this.useTheme) {
           this.styles = [
