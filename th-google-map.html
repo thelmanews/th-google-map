@@ -236,6 +236,10 @@ Element providing solution to no problem in particular.
         else {
           this.styles = null;
         }
+      },
+      markersChanged: function(){
+        var self = this;
+        self.$.map.mapApiLoaded(); // Update markers to only reflect current set, removing old markers
       }
 
 
