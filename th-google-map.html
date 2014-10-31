@@ -86,8 +86,7 @@ Element providing solution to no problem in particular.
      * Markers on the map. each marker item has latitude, longitude and label (optional)
      * @type {Array}
      */
-    markers: [{"latitude": 40.6928, "longitude": -73.9903, "label": "Brooklyn"  },
-              {"latitude": 40.75, "longitude": -74.0049, "label": "another"  }],
+    markers: [],
 
     /**
      * show center marker
@@ -240,6 +239,7 @@ Element providing solution to no problem in particular.
       markersChanged: function(){
         var self = this;
         self.$.map.mapApiLoaded(); // Update markers to only reflect current set, removing old markers
+        console.log(self.markers);
       }
 
 
