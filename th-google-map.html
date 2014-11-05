@@ -15,7 +15,7 @@ Element providing solution to no problem in particular.
 @status alpha
 @homepage http://sepans.github.io/th-google-map
 -->
-<polymer-element name="th-google-map" extends="th-animated" attributes="latitude longitude zoom showCenterMarker mapType markers fitToMarkers zoomable width height useTheme">
+<polymer-element name="th-google-map" extends="th-animated" attributes="input latitude longitude zoom showCenterMarker mapType markers fitToMarkers zoomable width height useTheme">
 
   <template>
 
@@ -239,6 +239,11 @@ Element providing solution to no problem in particular.
       markersChanged: function(){
         var self = this;
         self.$.map.mapApiLoaded(); // Update markers to only reflect current set, removing old markers
+      },
+      inputChanged: function(){
+        var self = this;
+        self.markers = self.input;
+        // self.$.map.mapApiLoaded();
       }
 
 
