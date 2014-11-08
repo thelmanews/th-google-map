@@ -244,6 +244,8 @@ Element providing solution to no problem in particular.
         var self = this;
         self.markers = self.input;
         self.$.map.mapApiLoaded();
+        console.log('th-google-map input changed');
+        self.fire('th-input-changed', self);
       }
 
 
