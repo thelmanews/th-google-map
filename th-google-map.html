@@ -1,6 +1,7 @@
 <link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../google-map/google-map.html">
 <link rel="import" href="../th-animated/th-animated.html">
+<link rel="import" href="../google-map/google-map.html">
+
 
 <!--
 Element providing solution to no problem in particular.
@@ -19,7 +20,7 @@ Element providing solution to no problem in particular.
   <template>
     <link rel="stylesheet" href="th-google-map.css" />
     <google-map id="map" styles="{{styles}}" latitude="{{latitude}}" longitude="{{longitude}}" zoom="{{zoom}}" showCenterMarker="{{showCenterMarker}}" mapType="{{mapType}}" 
-    fitToMarkers="{{fitToMarkers}}" zoomable="{{zoomable}}" style="width: {{width}}px; height: {{height}}px">
+    fitToMarkers="{{fitToMarkers}}" zoomable="{{zoomable}}" style="width: {{computedWidth}}px; height: {{computedHeight}}px">
 
       <template repeat="{{marker in markers}}">
         <google-map-marker latitude="{{marker.latitude}}" longitude="{{marker.longitude}}"
@@ -163,10 +164,13 @@ Element providing solution to no problem in particular.
           ],
 
       domReady: function() {
-        
-        this.useThemeChanged();
-        this.$.map.addEventListener('google-map-ready', function() {
-            this.fire('th-ready', {msg: 'element ready', element: this});
+        var self = this;
+        self.computedHeight = self.computeHeight(self.height);
+        self.computedWidth = self.computeWidth(self.width);
+
+        self.useThemeChanged();
+        self.$.map.addEventListener('google-map-ready', function() {
+            self.fire('th-ready', {msg: 'element ready', element: self});
         });
       },
    
