@@ -31,7 +31,7 @@ Element providing solution to no problem in particular.
     fitToMarkers="{{fitToMarkers}}" zoomable="{{zoomable}}" style="width: {{computedWidth}}px; height: {{computedHeight}}px">
 
       <template repeat="{{marker in markers}}">
-        <google-map-marker class="marker" style="width:20px; height: 20px;" latitude="{{marker.latitude}}" longitude="{{marker.longitude}}"
+        <google-map-marker latitude="{{marker.latitude}}" longitude="{{marker.longitude}}"
         title="{{marker.label}}" icon="{{marker.icon}}">
           <div class="marker">{{marker.label}}</div>
         </google-map-marker>
