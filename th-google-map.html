@@ -176,6 +176,14 @@ Element providing solution to no problem in particular.
             self.fire('th-ready', {msg: 'element ready', element: self});
         });
       },
+
+      resize: function() {
+
+        var self = this;
+        self.computedWidth = self.computeWidth();
+        console.log('size', self.computedWidth, self.computedHeight);
+
+      },
    
       /**
        * Observer method for useTheme. Google map api doesn't support style changes but works in composer since it
