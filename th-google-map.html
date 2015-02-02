@@ -172,6 +172,8 @@ Element providing solution to no problem in particular.
 
         self.useThemeChanged();
         self.$.map.addEventListener('google-map-ready', function() {
+            //resize after init.
+            self.resize();
             self.mapReady = true;
             self.fire('th-ready', {msg: 'element ready', element: self});
         });
@@ -181,7 +183,9 @@ Element providing solution to no problem in particular.
 
         var self = this;
         self.computedWidth = self.computeWidth();
-        console.log('size', self.computedWidth, self.computedHeight);
+        self.computedHeight = Math.max(self.computeHeight(), 50); //min height 50.
+        self.$.map.resize(self.computedWidth, self.computedHeight);
+
 
       },
    
