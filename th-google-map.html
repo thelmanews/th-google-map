@@ -274,32 +274,20 @@ Element providing solution to no problem in particular.
             "version": "0.0.1",
             "thumbnail":"google-map.jpg", 
             "tags":["map", "google"],
+            "type": "visualize",
             "fields":[ { "name":"label", "type":"string"},
                        { "name":"longitude", "type":"float", "required":true},
                        { "name":"latitude", "type":"float", "required":true}
             ],
             "inputAttr": {
-              "latitude": {"friendly":"Latitude", "type":"int", "default":40.7127},
-              "longitude": {"friendly":"Longitude", "type":"int", "default":-74.0059},
-              "zoom": {"friendly":"Zoom", "type":"int", "default":10},
-              "useTheme": {"friendly":"Use Card Theme", "type":"boolean", "default": true},
+              "latitude": {"friendly":"Latitude", "type":"float", "default":40.7127},
+              "longitude": {"friendly":"Longitude", "type":"float", "default":-74.0059},
+              "zoom": {"friendly":"Zoom", "type":"range", "default":10, "range":[1,21]},
               "showCenterMarker": {"friendly":"Show Center Marker", "type":"boolean", "default": false},
               "fitToMarkers": {"friendly":"Fit to Markers", "type":"boolean", "default": false},
               "zoomable": {"friendly":"Zoomable", "type":"boolean", "default": true},
-              "mapType": {"friendly":"Map Type", "type": "dropdown", "default": "roadmap", "values":["roadmap", "satellite", "hybrid", "terrain"]},
-              "markers":{"friendly":"Markers", "type":"table-repeating","rows":2, 
-                "fields":{
-                  "latitude": {"friendly":"Latitude", "type":"int", "default":40.7127},
-                  "longitude": {"friendly":"Longitude", "type":"int", "default":-74.0059},
-                  "label" : {"friendly": "Label", "type": "string", "defualt": "NYC"},
-                  "image" : {"friendly": "Icon", "type": "image", "defualt": ""}
-                },
-                "default":[
-                  {"latitude": 40.71, "longitude": -74.0059, "label": "NYC"  }, 
-                  {"latitude": 40.75, "longitude": -74.0049, "label": "another"  }
-                ]
-
-              }
+              "mapType": {"friendly":"Map Type", "type": "dropdown", "default": "roadmap", "values":["roadmap", "satellite", "hybrid", "terrain"]}
+              
             }
         }
     }
