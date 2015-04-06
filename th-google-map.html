@@ -37,16 +37,12 @@ Element providing solution to no problem in particular.
 
       <template repeat="{{marker in markers}}">
         <google-map-marker latitude="{{marker.latitude}}" longitude="{{marker.longitude}}"
-        title="{{marker.label}}" icon="{{marker.icon}}">
+        title="{{marker.label}}" icon="{{marker.image}}">
           <div class="marker">{{marker.label}}</div>
         </google-map-marker>
       </template>
 
-
     </google-map>
-
-
-    
 
   </template>
 
